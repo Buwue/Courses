@@ -1,19 +1,36 @@
+var alphabet = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M"];
+
 document.addEventListener("keydown", function(event) {
-    
-    var keyPressed = event.key.toUpperCase();
-    var alphabet = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M"];
-    for (var i = 0; i < alphabet.length; i++) {
-        if (keyPressed === alphabet[i]) {
-            var htmlKeyPressed = document.querySelector("."+ alphabet[i])
-            console.log(htmlKeyPressed);
-            var keyPressedClass = htmlKeyPressed.classList;
-            keyPressedClass.add("key-pressed");  
-            keyPressedClass.add("key-held");
-        }
-    }
-
-    document.addEventListener("keyup", function() {
-        keyPressedClass.remove("key-held");
-    });
-
+    keyHeld(event);
 });
+
+document.addEventListener("keyup", function(event) {
+    keyRemove(event);
+});
+
+function keyHeld(event) {
+    var keyPressed = event.key.toUpperCase();
+
+    if (alphabet.includes(keyPressed)) {
+
+        var htmlKeyPressed = document.querySelector("."+ keyPressed);
+        var keyPressedClass = htmlKeyPressed.classList;
+        keyPressedClass.add("key-pressed");  
+        keyPressedClass.add("key-held");        
+        } else {
+            console.log(keyPressed);
+        }
+}
+
+function keyRemove(event) {
+    var keyPressed = event.key.toUpperCase();
+    if (alphabet.includes(keyPressed)) {
+    var htmlKeyPressed = document.querySelector("."+ keyPressed);
+    var letterClasses = htmlKeyPressed.classList;
+    if (letterClasses.contains("key-held")) {
+        letterClasses.remove("key-held");
+    }
+} else {
+    console.log(keyPressed);
+}
+}
