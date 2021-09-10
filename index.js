@@ -1,15 +1,24 @@
-var alphabet = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M"];
+var alphabet = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M","SPACE"];
+var numberOfTimes = 0;
 
 document.addEventListener("keydown", function(event) {
-    keyHeld(event);
+    var keyPressed = event.key.toUpperCase();
+    if (keyPressed === " ") {
+        keyPressed = "SPACE";
+    }
+    keyHeld(keyPressed);
 });
 
 document.addEventListener("keyup", function(event) {
-    keyRemove(event);
+    var keyPressed = event.key.toUpperCase();
+    if (keyPressed === " ") {
+        keyPressed = "SPACE";
+    }
+    keyRemove(keyPressed);
 });
 
-function keyHeld(event) {
-    var keyPressed = event.key.toUpperCase();
+
+function keyHeld(keyPressed) {
 
     if (alphabet.includes(keyPressed)) {
 
@@ -22,15 +31,29 @@ function keyHeld(event) {
         }
 }
 
-function keyRemove(event) {
-    var keyPressed = event.key.toUpperCase();
+function keyRemove(keyPressed) {
+
     if (alphabet.includes(keyPressed)) {
     var htmlKeyPressed = document.querySelector("."+ keyPressed);
     var letterClasses = htmlKeyPressed.classList;
     if (letterClasses.contains("key-held")) {
         letterClasses.remove("key-held");
+        if (keyPressed === "SPACE") {
+            spaceCounter();
+        }
     }
 } else {
     console.log(keyPressed);
 }
+}
+
+function spaceCounter() {
+    numberOfTimes++;
+    var pressed100Times = new Audio("Audio/ding.mp3");
+
+    document.querySelector(".letter-space").textContent = "You have pressed me " + numberOfTimes + " times!"; 
+
+    if (numberOfTimes % 100 === 0 ) {
+        pressed100Times.play();
+    }
 }
