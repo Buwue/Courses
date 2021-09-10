@@ -1,4 +1,4 @@
-var alphabet = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M","SPACE"];
+var alphabet = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M","SPACE","COMMA"];
 var numberOfTimes = 0;
 
 
@@ -6,6 +6,8 @@ document.addEventListener("keydown", function(event) {
     var keyPressed = event.key.toUpperCase();
     if (keyPressed === " ") {
         keyPressed = "SPACE";
+    } else if (keyPressed ===  ",") {
+        keyPressed = "COMMA"
     }
     keyHeld(keyPressed);
 });
@@ -14,6 +16,10 @@ document.addEventListener("keyup", function(event) {
     var keyPressed = event.key.toUpperCase();
     if (keyPressed === " ") {
         keyPressed = "SPACE";
+    } else if (keyPressed ===  ",") {
+        keyPressed = "COMMA"
+        var fireForce = new Audio("Audio/fireforce.mp3");
+        fireForce.play();
     }
     keyRemove(keyPressed);
 });
@@ -56,11 +62,7 @@ function spaceCounter() {
 
     if (numberOfTimes % 100 === 0 ) {
         pressed100Times.play();
-    }
-
-    
-
-    
+    } 
 }
 
 var spacePresses0sec = numberOfTimes;
