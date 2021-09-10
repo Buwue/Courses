@@ -1,6 +1,7 @@
 var alphabet = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M","SPACE"];
 var numberOfTimes = 0;
 
+
 document.addEventListener("keydown", function(event) {
     var keyPressed = event.key.toUpperCase();
     if (keyPressed === " ") {
@@ -56,4 +57,18 @@ function spaceCounter() {
     if (numberOfTimes % 100 === 0 ) {
         pressed100Times.play();
     }
+
+    
+
+    
 }
+
+var spacePresses0sec = numberOfTimes;
+setInterval(function() {
+        var spacePresses1Sec = numberOfTimes;
+        var spacePresses = spacePresses1Sec - spacePresses0sec;
+        var CPS = spacePresses / 1;
+        document.querySelector(".CPM").innerHTML = "Your CPS is : " + CPS;
+        spacePresses0sec = numberOfTimes;
+    }, 1000);
+
