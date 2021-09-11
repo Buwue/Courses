@@ -116,7 +116,6 @@ setInterval(function() {
     var mouseCPS = mouseCPStimes1sec - mouseCPStimes0sec;
     document.querySelector(".mouse-CPS").innerHTML = ("Your CPS is : " + mouseCPS);
     mouseCPStimes0sec = mouseCPStimes;
-    console.log("hi");
 
     if (mouseCPS > highestCPS) {
         highestCPS = mouseCPS;
