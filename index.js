@@ -35,6 +35,10 @@ document.querySelector(".reset-button").addEventListener("click", function(event
 document.querySelector(".mouse-clicker").addEventListener("click", function(event) {
     if (event.pointerId === 1) {
         mouseCPStimes++;
+        document.querySelector(".mouse-clicker").style.backgroundColor = "#2f3235";
+        setTimeout(function() {
+            document.querySelector(".mouse-clicker").style.backgroundColor = "#26292c";
+        }, 100);
     }
 })
 
@@ -116,6 +120,6 @@ setInterval(function() {
 
     if (mouseCPS > highestCPS) {
         highestCPS = mouseCPS;
-        document.querySelector(".highest-mouse-CPS").innerHTML = ("Your highest CPS is : " + highestCPS);
+        document.querySelector(".highest-mouse-CPS  ").innerHTML = ("Your highest CPS is : " + highestCPS);
     }
 }, 1000);
